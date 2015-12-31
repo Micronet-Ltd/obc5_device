@@ -1,0 +1,33 @@
+#integrated process
+type getaplog, domain;
+type getaplog_exec, exec_type, file_type;
+
+#started by init
+init_daemon_domain(getaplog)
+
+allow getaplog self:capability { chown dac_override fowner fsetid setfcap setuid setgid sys_admin sys_tty_config };
+
+# Allow recovery to create a fuse filesystem, and read files from it.
+allow getaplog fuse_device:chr_file rw_file_perms;
+allow getaplog fuse:dir create_dir_perms;
+allow getaplog fuse:file create_file_perms;
+
+read_logd(getaplog)
+
+allow getaplog logdr_socket:sock_file create_file_perms;
+allow getaplog kernel:system {syslog_read syslog_mod};
+allow getaplog shell_data_file:file create_file_perms;
+allow getaplog shell_data_file:dir create_dir_perms;
+allow getaplog self:capability2 syslog;
+allow getaplog self:unix_stream_socket { create_stream_socket_perms connectto };
+
+unix_socket_connect(getaplog, property, init)
+  
+allow getaplog shell_exec:file rx_file_perms;
+allow getaplog system_file:file rx_file_perms;
+allow getaplog sysfs:file {create open read write getattr };
+allow getaplog proc:dir {create open read write getattr search};
+
+#allow getaplog set system prop,sensor need write persist
+allow getaplog powerctl_prop:property_service set;
+allow getaplog persist_file:dir rw_dir_perms;

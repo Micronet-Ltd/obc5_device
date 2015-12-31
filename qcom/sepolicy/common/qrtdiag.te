@@ -1,0 +1,40 @@
+type qrtdiag, domain;
+type qrtdiag_exec, exec_type, file_type;
+
+userdebug_or_eng(`
+  init_daemon_domain(qrtdiag)
+  domain_auto_trans(shell, qrtdiag_exec, qrtdiag)
+  domain_auto_trans(adbd, qrtdiag_exec, qrtdiag)
+  file_type_auto_trans(qrtdiag, system_data_file, qrtdiag_data_file);
+  allow qrtdiag diag_device:chr_file {ioctl read write open getattr};
+  allow qrtdiag devpts:chr_file {ioctl read write open getattr};
+  allow qrtdiag shell:fd {use};
+  allow qrtdiag su:fd {use};
+  allow qrtdiag cgroup:dir { create add_name };
+  allow qrtdiag console_device:chr_file { read write };
+  allow qrtdiag port:tcp_socket name_connect;
+  allow qrtdiag sdcard_internal:dir { create add_name write search };
+  allow qrtdiag self:capability { setuid net_raw sys_admin setgid dac_override };
+  allow qrtdiag self:capability2 { syslog block_suspend };
+  allow qrtdiag self:tcp_socket { create connect setopt};
+  allow qrtdiag sysfs_wake_lock:file { write open append };
+  allow qrtdiag kernel:system syslog_mod;
+  # allow drmdiagapp access to drm related paths
+  allow qrtdiag persist_file:dir r_dir_perms;
+  r_dir_file(qrtdiag, persist_data_file)
+  # Write to drm related pieces of persist partition
+  allow qrtdiag persist_drm_file:dir create_dir_perms;
+  allow qrtdiag persist_drm_file:file create_file_perms;
+  allow qrtdiag fuse_device:chr_file rw_file_perms;
+  allow qrtdiag fuse:dir create_dir_perms;
+  allow qrtdiag fuse:file create_file_perms;
+  unix_socket_connect(qrtdiag, property, init)
+  allow qrtdiag shell_exec:file rx_file_perms;
+  allow qrtdiag system_file:file rx_file_perms;
+  allow qrtdiag sysfs:file {create open read write getattr };
+  allow qrtdiag proc:dir {create open read write getattr search};
+  allow qrtdiag shell_data_file:file create_file_perms;
+  allow qrtdiag shell_data_file:dir create_dir_perms;
+  allow qrtdiag powerctl_prop:property_service set;
+  allow qrtdiag persist_file:dir rw_dir_perms;
+')

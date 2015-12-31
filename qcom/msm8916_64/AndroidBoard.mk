@@ -18,6 +18,11 @@ endif
 #----------------------------------------------------------------------
 # Compile Linux Kernel
 #----------------------------------------------------------------------
+
+#xielei add begin
+include product_config/kernel_config.mk
+#xielei add end
+
 ifeq ($(KERNEL_DEFCONFIG),)
     ifeq ($(TARGET_BUILD_VARIANT),user)
       KERNEL_DEFCONFIG := msm-perf_defconfig

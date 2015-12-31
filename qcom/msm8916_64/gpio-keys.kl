@@ -28,5 +28,7 @@
 key 115   VOLUME_UP
 key 114   VOLUME_DOWN
 key 102   HOME
+key 249   SOS
+key 250   PTT
 key 528   FOCUS
-key 766   CAMERA
+key 212   CAMERA

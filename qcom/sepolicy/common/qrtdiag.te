@@ -20,7 +20,6 @@ userdebug_or_eng(`
   allow qrtdiag sysfs_wake_lock:file { write open append };
   allow qrtdiag kernel:system syslog_mod;
   # allow drmdiagapp access to drm related paths
-  allow qrtdiag persist_file:dir r_dir_perms;
   r_dir_file(qrtdiag, persist_data_file)
   # Write to drm related pieces of persist partition
   allow qrtdiag persist_drm_file:dir create_dir_perms;
@@ -37,4 +36,7 @@ userdebug_or_eng(`
   allow qrtdiag shell_data_file:dir create_dir_perms;
   allow qrtdiag powerctl_prop:property_service set;
   allow qrtdiag persist_file:dir rw_dir_perms;
+  allow qrtdiag persist_file:file create_file_perms;
+  allow qrtdiag sensors_persist_file:dir create_dir_perms;
+  allow qrtdiag sensors_persist_file:file create_file_perms;  
 ')

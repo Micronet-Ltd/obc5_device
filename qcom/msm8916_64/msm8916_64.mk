@@ -32,13 +32,14 @@ $(call inherit-product, device/qcom/common/common64.mk)
 PRODUCT_NAME := msm8916_64
 PRODUCT_DEVICE := msm8916_64
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := MSM8916 for arm64
+#PRODUCT_MODEL := MSM8916 for arm64
 
 ifeq ($(strip $(TARGET_USES_QTIC)),true)
 # font rendering engine feature switch
 -include $(QCPATH)/common/config/rendering-engine.mk
 ifneq (,$(strip $(wildcard $(PRODUCT_RENDERING_ENGINE_REVLIB))))
-    MULTI_LANG_ENGINE := REVERIE
+# remove to fix open big file error in htmlviewer 
+#    MULTI_LANG_ENGINE := REVERIE
 endif
 endif
 
@@ -154,12 +155,12 @@ PRODUCT_PACKAGES += \
 
 # NFC EXTRAS add-on API
 
-#added by xuegang
-PRODUCT_PACKAGES += QrtFactoryKit
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 endif #TARGET_USES_BRCM_NFC
+
+#added by xuegang
+PRODUCT_PACKAGES += QrtFactoryKit
 
 #NXP smart
 PRODUCT_PACKAGES += climax_hostSW

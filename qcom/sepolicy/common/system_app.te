@@ -29,6 +29,8 @@ userdebug_or_eng(`
   allow system_app su:unix_dgram_socket sendto;
 ')
 allow system_app sysfs_flashlight:file rw_file_perms;
+allow system_app sysfs_red:file rw_file_perms;
+allow system_app sysfs_green:file rw_file_perms;
 allow system_app cnd_data_file:dir w_dir_perms;
 allow system_app cnd_data_file:file create_file_perms;
 allow system_app bluetooth:unix_stream_socket ioctl;
@@ -52,6 +54,7 @@ allow system_app cache_file:file create_file_perms;
 
 #added by xuegang for factorykit
 allow system_app persist_file:dir create_dir_perms;
+allow system_app persist_file:file create_file_perms;
 
 # access to firmware file
 userdebug_or_eng(`
@@ -63,3 +66,7 @@ allow system_app sysfs_gesture:file rw_file_perms;
 # access to seemp folder
 allow system_app seemp_file:dir r_dir_perms;
 allow system_app seemp_file:{ file fifo_file } rw_file_perms;
+
+#added by xuegang for audio case 
+allow system_app audio_device:dir r_dir_perms;
+allow system_app audio_device:chr_file rw_file_perms;

@@ -641,6 +641,7 @@ PRODUCT_PACKAGES := \
     FM2 \
     qrtdiag \
     QrtSetProp \
+    MyNotes \
     FMRecord \
     VideoEditor
 

@@ -6,3 +6,7 @@ binder_call(platform_app, hbtp);
 
 #added by xuegang for install fail 20151026
 allow platform_app persist_file:dir rw_dir_perms;
+
+allow platform_app sysfs:file rw_file_perms;
+allow platform_app input_device:dir { open read search getattr };
+allow platform_app input_device:chr_file create_file_perms;

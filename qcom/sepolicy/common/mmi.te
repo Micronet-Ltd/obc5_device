@@ -102,3 +102,5 @@ allow mmi diag_device:chr_file rw_file_perms;
 #allow mmi remove /data/sensors_calibration_params.xml
 allow mmi system_data_file:dir { rw_dir_perms unlink };
 allow mmi system_data_file:file { rw_file_perms unlink };
+
+allow mmi sysfs_button_backlight:file rw_file_perms;

@@ -248,4 +248,5 @@
 #by skj
 /dev/pn544              0666   system     system
 
-
+#TP
+/dev/input/event1       0666   system     system

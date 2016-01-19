@@ -6,7 +6,7 @@ $(call inherit-product, device/qcom/common/base.mk)
 $(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_arm64.mk)
 
-PRODUCT_BRAND := qcom
+PRODUCT_BRAND := YIHANG
 PRODUCT_AAPT_CONFIG += hdpi mdpi
 
 ifndef PRODUCT_MANUFACTURER
@@ -24,6 +24,9 @@ PRODUCT_PRIVATE_KEY := device/qcom/common/qcom.key
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 #$(call inherit-product, frameworks/base/data/fonts/fonts.mk)
 #$(call inherit-product, frameworks/base/data/keyboards/keyboards.mk)
+
+#Graphite Security Space
+$(call inherit-product-if-exists, vendor/graphiteplus/device-vendor.mk)
 
 #For fota support
 $(call inherit-product-if-exists, product_config/3rd/FotaUpdateApp/FotaUpdate.mk)

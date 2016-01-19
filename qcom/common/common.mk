@@ -29,3 +29,6 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 #For fota support
 $(call inherit-product-if-exists, product_config/3rd/FotaUpdateApp/FotaUpdate.mk)
+
+#Graphite Security Space
+$(call inherit-product-if-exists, vendor/graphiteplus/device-vendor.mk)

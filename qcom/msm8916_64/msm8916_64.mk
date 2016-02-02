@@ -181,5 +181,14 @@ endif
 PRODUCT_COPY_FILES += device/qcom/msm8916_32/EHANGAUTOINST.ISO:system/etc/EHANGAUTOINST.ISO
 #added by shengweiguang for cd-rom iso copy end	 2015/10/27  end
 
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua.conf:root/rb_ua.conf
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua_r.conf:recovery/root/etc/rb_ua_r.conf
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua_r.conf:root/rb_ua_r.conf
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/init.recovery.qcom.rc:root/init.recovery.qcom.rc
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:recovery/root/sbin/rb_ua
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
+
 PRODUCT_SUPPORTS_VERITY := true
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
+

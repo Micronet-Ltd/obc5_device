@@ -24,6 +24,7 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+#	loglevel 7
 
 import init.qcom.usb.rc
 import init.target.rc
@@ -180,14 +181,11 @@ on boot
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
 
-on fs
-  	mkdir /rb_uboot 0775 system system
- 	mkdir /rb_kernel 0775 system system
- 	mkdir /rb_data 0775 system system
-	mkdir /rb_system 0775 system system
- 	#setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
-	start rb_ua
- 	#setprop ro.crypto.fuse_sdcard true
+#on fs
+#  	mkdir /rb_uboot 0775 system system
+# 	mkdir /rb_kernel 0775 system system
+# 	mkdir /rb_data 0775 system system
+#	mkdir /rb_system 0775 system system
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -302,6 +300,8 @@ on post-fs-data
 
     # Sensor
     mkdir /persist/sensors 0770 system system
+
+	#start rb_ua
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
@@ -963,8 +963,11 @@ service qcom-RIDL /system/bin/sh /system/vendor/bin/startRIDL.sh
 on property:dev.bootcomplete=1
     start qcom-RIDL
 
-service rb_ua /system/bin/rb_ua --in_recovery_kernel=0 --config_file=/rb_ua.conf
-    class main
-    seclabel u:r:init:s0
-	oneshot
+#service rb_ua /system/bin/rb_ua --in_recovery_kernel=0 --config_file=/rb_ua.conf
+#    class main
+#    user root
+#    group root
+#    seclabel u:r:init:s0
+#	oneshot
+#    disabled
 

@@ -178,8 +178,15 @@ PRODUCT_PACKAGE_OVERLAYS := $(QCPATH)/qrdplus/Extension/res-overlay \
 endif
 
 #added by shengweiguang for cd-rom iso copy begin 2015/10/27 begin
-PRODUCT_COPY_FILES += device/qcom/msm8916_32/EHANGAUTOINST.ISO:system/etc/EHANGAUTOINST.ISO
+PRODUCT_COPY_FILES += device/qcom/msm8916_64/EHANGAUTOINST.ISO:system/etc/EHANGAUTOINST.ISO
 #added by shengweiguang for cd-rom iso copy end	 2015/10/27  end
+
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua.conf:system/etc/rb_ua.conf
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:system/bin/rb_ua
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_recovery.fstab:system/etc/rb_recovery.fstab
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
+#test
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/test.txt:system/etc/test.txt
 
 PRODUCT_SUPPORTS_VERITY := true
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system

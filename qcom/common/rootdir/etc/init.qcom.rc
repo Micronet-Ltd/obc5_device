@@ -24,7 +24,6 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-#	loglevel 7
 
 import init.qcom.usb.rc
 import init.target.rc
@@ -181,12 +180,6 @@ on boot
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
 
-#on fs
-#  	mkdir /rb_uboot 0775 system system
-# 	mkdir /rb_kernel 0775 system system
-# 	mkdir /rb_data 0775 system system
-#	mkdir /rb_system 0775 system system
-
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create directory for TZ Apps
@@ -262,8 +255,8 @@ on post-fs-data
     chown system system /data/shared
 
     #Create directory for FOTA
-    #mkdir /data/fota 0771
-    #chown system system /data/fota
+    mkdir /data/fota 0771
+    chown system system /data/fota
 
     #Create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
@@ -295,13 +288,8 @@ on post-fs-data
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
 
-	# Redbend
-	mkdir /data/misc/rb 0777 system system
-
     # Sensor
     mkdir /persist/sensors 0770 system system
-
-	#start rb_ua
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
@@ -962,12 +950,3 @@ service qcom-RIDL /system/bin/sh /system/vendor/bin/startRIDL.sh
 
 on property:dev.bootcomplete=1
     start qcom-RIDL
-
-#service rb_ua /system/bin/rb_ua --in_recovery_kernel=0 --config_file=/rb_ua.conf
-#    class main
-#    user root
-#    group root
-#    seclabel u:r:init:s0
-#	oneshot
-#    disabled
-

@@ -12,3 +12,4 @@
 /devices/platform/msm_hsusb                  /storage/usbotg    vfat    nosuid,nodev         wait,voldmanaged=usbotg:auto
 /dev/block/zram0             none         swap    defaults zramsize=536870912
 /dev/block/bootdevice/by-name/config         /frp         emmc    defaults                                            defaults
+/dev/block/bootdevice/by-name/recovery	/recovery	emmc	defaults	defaults

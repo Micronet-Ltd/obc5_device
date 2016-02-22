@@ -169,6 +169,34 @@ PRODUCT_PACKAGES += QrtFactoryKit
 PRODUCT_PACKAGES += climax_hostSW
 PRODUCT_PACKAGES += tfa9897
 PRODUCT_PACKAGES += libtfa9897
+
+#CANbus tools
+PRODUCT_PACKAGES += \
+	libcan \
+	candump \
+	cansend \
+	bcmserver \
+	can-calc-bit-timing \
+	canbusload \
+	canfdtest \
+	cangen \
+	cangw \
+	canlogserver \
+	canplayer \
+	cansniffer \
+	isotpdump \
+	isotprecv \
+	isotpsend \
+	isotpserver \
+	isotpsniffer \
+	isotptun \
+	isotpperf \
+	log2asc \
+	log2long \
+	slcan_attach \
+	slcand \
+	slcanpty
+
 PRODUCT_COPY_FILES += device/qcom/msm8916_64/Tfa98xx.cnt:system/etc/Tfa98xx.cnt
 # Defined the locales
 PRODUCT_LOCALES += th_TH vi_VN tl_PH hi_IN ar_EG ru_RU tr_TR pt_BR bn_IN mr_IN ta_IN te_IN zh_HK \

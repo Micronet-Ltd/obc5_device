@@ -11,6 +11,9 @@ USE_CAMERA_STUB := true
 
 -include $(QCPATH)/common/msm8916/BoardConfigVendor.mk
 
+PRODUCT_RESTRICT_VENDOR_FILES := false
+-include vendor/graphiteplus/BoardConfigVendor.mk
+
 # bring-up overrides
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
@@ -27,6 +30,8 @@ TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_CPU_CORTEX_A53 := true
 
 TARGET_NO_BOOTLOADER := false
 TARGET_NO_KERNEL := false
@@ -46,7 +51,7 @@ ifeq ($(EH_PRODUCT_NAME),A3001)
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5835325440
 else
 ifeq ($(EH_PRODUCT_NAME),A2001)
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 13779337216
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 13780368384
 else
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5835325440
 endif
@@ -67,6 +72,9 @@ TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_QCOM_BSP := true
 TARGET_NO_RPC := true
+
+# Enable CSVT
+TARGET_USES_CSVT := true
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 #BOARD_RECOVERY_CMDLINE := console= androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
@@ -112,6 +120,8 @@ TARGET_HW_DISK_ENCRYPTION := true
 TARGET_SWV8_DISK_ENCRYPTION := true
 
 WITH_DEXPREOPT := true
+#added by xuegang for odex fail 20151221
+WITH_DEXPREOPT_PIC := true
 
 #For fota support
 FOTA_UPDATE_SUPPORT := false

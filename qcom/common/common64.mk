@@ -6,7 +6,7 @@ $(call inherit-product, device/qcom/common/base.mk)
 $(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_arm64.mk)
 
-PRODUCT_BRAND := YIHANG
+PRODUCT_BRAND := MICRONET
 PRODUCT_AAPT_CONFIG += hdpi mdpi
 
 ifndef PRODUCT_MANUFACTURER

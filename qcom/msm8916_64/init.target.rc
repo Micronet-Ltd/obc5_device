@@ -67,6 +67,7 @@ on post-fs-data
     chown system system /sys/afe_properties/hallib_name
     chown system system /sys/afe_properties/wake_up_enable
     mkdir /data/nfc 0770 nfc nfc
+	chmod 0666 /dev/vaccel
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon

@@ -32,8 +32,8 @@
         <item>off</item>
         <item>torch</item>
     </string-array>
-
-    <array name="video_flashmode_icons" translatable="false">
+<!--Deleted by zhoukai because it affect the Camera2 videos label location-->
+    <!--<array name="video_flashmode_icons" translatable="false">
         <item>@drawable/ic_flash_off_holo_light</item>
         <item>@drawable/ic_flash_on_holo_light</item>
     </array>
@@ -41,5 +41,5 @@
     <array name="video_flashmode_largeicons" translatable="false">
         <item>@drawable/ic_flash_off_holo_light</item>
         <item>@drawable/ic_flash_on_holo_light</item>
-    </array>
+    </array>-->
 </resources>

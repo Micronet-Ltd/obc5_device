@@ -117,4 +117,7 @@ BOARD_SEPOLICY_UNION += sensors.te
 BOARD_SEPOLICY_UNION += sensors_test.te
 #endif
 
+#qj add for secure space
+include $(TOPDIR)vendor/graphiteplus/proprietary/sepolicy/Android.mk
+
 endif

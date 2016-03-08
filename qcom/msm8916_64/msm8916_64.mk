@@ -31,7 +31,7 @@ $(call inherit-product, device/qcom/common/common64.mk)
 
 PRODUCT_NAME := msm8916_64
 PRODUCT_DEVICE := msm8916_64
-PRODUCT_BRAND := Android
+#PRODUCT_BRAND := Android
 #PRODUCT_MODEL := MSM8916 for arm64
 
 ifeq ($(strip $(TARGET_USES_QTIC)),true)
@@ -51,7 +51,7 @@ PRODUCT_BOOT_JARS += vcard
 PRODUCT_BOOT_JARS += tcmiface
 
 # default is nosdcard, S/W button enabled in resource
-PRODUCT_CHARACTERISTICS := nosdcard
+#PRODUCT_CHARACTERISTICS := nosdcard
 
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
@@ -102,6 +102,9 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf
 
+PRODUCT_COPY_FILES += \
+    device/qcom/msm8916_64/.bt_nv.bin:persist/.bt_nv.bin
+	
 # NFC packages
 ifeq ($(TARGET_HAS_NFC_CUSTOM_CONFIG),true)
 
@@ -166,6 +169,34 @@ PRODUCT_PACKAGES += QrtFactoryKit
 PRODUCT_PACKAGES += climax_hostSW
 PRODUCT_PACKAGES += tfa9897
 PRODUCT_PACKAGES += libtfa9897
+
+#CANbus tools
+PRODUCT_PACKAGES += \
+	libcan \
+	candump \
+	cansend \
+	bcmserver \
+	can-calc-bit-timing \
+	canbusload \
+	canfdtest \
+	cangen \
+	cangw \
+	canlogserver \
+	canplayer \
+	cansniffer \
+	isotpdump \
+	isotprecv \
+	isotpsend \
+	isotpserver \
+	isotpsniffer \
+	isotptun \
+	isotpperf \
+	log2asc \
+	log2long \
+	slcan_attach \
+	slcand \
+	slcanpty
+
 PRODUCT_COPY_FILES += device/qcom/msm8916_64/Tfa98xx.cnt:system/etc/Tfa98xx.cnt
 # Defined the locales
 PRODUCT_LOCALES += th_TH vi_VN tl_PH hi_IN ar_EG ru_RU tr_TR pt_BR bn_IN mr_IN ta_IN te_IN zh_HK \

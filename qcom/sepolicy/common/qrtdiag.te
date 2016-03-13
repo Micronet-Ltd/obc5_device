@@ -9,7 +9,6 @@ userdebug_or_eng(`
   allow qrtdiag diag_device:chr_file {ioctl read write open getattr};
   allow qrtdiag devpts:chr_file {ioctl read write open getattr};
   allow qrtdiag shell:fd {use};
-  allow qrtdiag su:fd {use};
   allow qrtdiag cgroup:dir { create add_name };
   allow qrtdiag console_device:chr_file { read write };
   allow qrtdiag port:tcp_socket name_connect;

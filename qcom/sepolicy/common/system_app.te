@@ -24,6 +24,8 @@ unix_socket_connect(system_app, pps, mm-pp-daemon)
 
 allow system_app cne_service:service_manager add;
 
+allow system_app proc:file r_file_perms;
+
 userdebug_or_eng(`
   allow system_app debugfs:file r_file_perms;
   allow system_app su:unix_dgram_socket sendto;

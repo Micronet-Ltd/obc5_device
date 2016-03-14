@@ -218,7 +218,7 @@ PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_recovery.fstab:
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
 PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/rb_ua:root/sbin/rb_ua
 #test
-PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/test.txt:system/etc/test.txt
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/test.txt:system/etc/test.txt
 
 PRODUCT_SUPPORTS_VERITY := true
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system

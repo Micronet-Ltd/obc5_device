@@ -105,8 +105,14 @@ service qrngp /system/bin/qrngp -f
 on property:sys.boot_completed=1
    start qrngp
    start iodriver
+   start inthinccontrold
 
 service iodriver /system/bin/iodriver
+   class late_start
+   user root
+   group root
+
+service inthinccontrold /data/inthinc/inthinccontrold
    class late_start
    user root
    group root

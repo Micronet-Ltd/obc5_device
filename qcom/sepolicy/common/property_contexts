@@ -8,3 +8,4 @@ persist.usb.chgdisabled    u:object_r:chgdiabled_prop:s0
 camera.                    u:object_r:camera_prop:s0
 persist.camera.            u:object_r:camera_prop:s0
 persist.power.             u:object_r:power_prop:s0
+rb_ua.dp.sdcard		   u:object_r:check_update_prop:s0

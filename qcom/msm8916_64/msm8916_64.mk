@@ -217,6 +217,7 @@ PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua.conf:system/
 PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_recovery.fstab:system/etc/rb_recovery.fstab
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
 PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/rb_ua:root/sbin/rb_ua
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update.sh:root/sbin/check_update.sh
 #test
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/test.txt:system/etc/test.txt
 

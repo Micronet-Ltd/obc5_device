@@ -106,6 +106,7 @@ on property:sys.boot_completed=1
    start qrngp
    start iodriver
 
+#   socket micronet_control 0666 system system
 service iodriver /system/bin/iodriver
    class late_start
    user root

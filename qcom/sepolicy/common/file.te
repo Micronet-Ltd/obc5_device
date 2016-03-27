@@ -153,3 +153,7 @@ type qrtdiag_data_file, file_type, data_file_type;
 
 #File types by qrtdiag
 type qrtdiag_socket, file_type;
+
+#micronet_control
+#type micronet_control_socket, file_type;
+

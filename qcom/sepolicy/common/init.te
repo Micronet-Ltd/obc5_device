@@ -1,4 +1,5 @@
 # Adding allow rule for search on /fuse
+domain_trans(init, rootfs, check_update)
 allow init fuse:dir search;
 allow init self:capability sys_module;
 allow init fuse:dir mounton;

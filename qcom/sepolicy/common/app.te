@@ -9,9 +9,23 @@ unix_socket_connect(appdomain, qlogd, qlogd)
 allow appdomain qdsp_device:chr_file r_file_perms;
 
 allow appdomain console_device:chr_file { read write };
+allow appdomain self:unix_dgram_socket { create_socket_perms sendto };
+allow appdomain self:unix_stream_socket { create_stream_socket_perms connectto };
+# neverallow { appdomain -system_app -radio -shell -bluetooth -nfc -check_update} property_type:property_service set;
 
 # test apps needs to communicate with imscm
 # using binder call
 userdebug_or_eng(`
-  binder_call(appdomain, imscm)
+  binder_call(appdomain, imscm);
+#  unix_socket_connect(appdomain, micronet_control, micronet_control);
+#  unix_socket_send(appdomain, micronet_control, micronet_control);
+#  allow appdomain system_server:unix_dgram_socket sendto;
+#  allow appdomain system_server:unix_stream_socket connectto;
+#  allow appdomain system_server:unix_stream_socket sendto;
+#  allow appdomain micronet_control_socket:sock_file rw_file_perms;
+#  allow appdomain micronet_control_socket:sock_file { create setattr open read write };
+#  dontaudit appdomain domain:socket_class_set *;
+#  dontaudit appdomain node_type:{ tcp_socket udp_socket rawip_socket } *;
+#  dontaudit appdomain port_type:socket_class_set *;
+#  dontaudit appdomain port_type:{ tcp_socket dccp_socket } *;
 ')

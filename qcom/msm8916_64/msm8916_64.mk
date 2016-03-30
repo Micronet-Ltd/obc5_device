@@ -213,11 +213,13 @@ PRODUCT_COPY_FILES += device/qcom/msm8916_64/EHANGAUTOINST.ISO:system/etc/EHANGA
 #added by shengweiguang for cd-rom iso copy end	 2015/10/27  end
 
 PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua.conf:system/etc/rb_ua.conf
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua_sd.conf:system/etc/rb_ua_sd.conf
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:system/bin/rb_ua
 PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_recovery.fstab:system/etc/rb_recovery.fstab
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
 PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/rb_ua:root/sbin/rb_ua
 PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update.sh:root/sbin/check_update.sh
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update_s.sh:system/bin/check_update.sh
 #test
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/test.txt:system/etc/test.txt
 

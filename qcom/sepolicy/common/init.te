@@ -1,5 +1,12 @@
 # Adding allow rule for search on /fuse
 domain_trans(init, rootfs, check_update)
 allow init fuse:dir search;
-allow init self:capability sys_module;
 allow init fuse:dir mounton;
+allow init fuse:dir create_dir_perms;
+allow init fuse:dir rw_dir_perms;
+allow init fuse:file create_file_perms;
+allow init fuse:file rw_file_perms;
+allow init self:capability sys_module;
+allow init fuse_device:chr_file rw_file_perms;
+allow init check_update_prop:property_service set;
+

@@ -112,7 +112,7 @@ service iodriver /system/bin/iodriver
    user root
    group root
 
-service inthinccontrold /data/inthinc/inthinccontrold
+service inthinccontrold /system/bin/inthinccontrold
    class late_start
    user root
    group root
@@ -168,6 +168,10 @@ on boot
     setprop ro.nfc.port "I2C"
     chmod 0660 /dev/pn544
     chown nfc nfc /dev/pn544
+
+# RS Temporary add permission 777 for gpio export import
+	chmod 0777 /sys/class/gpio/export
+	chmod 0777 /sys/class/gpio/unexport
 
 service wcnss-service /system/bin/wcnss_service
     class main

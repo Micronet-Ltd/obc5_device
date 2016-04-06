@@ -105,17 +105,24 @@ service qrngp /system/bin/qrngp -f
 on property:sys.boot_completed=1
    start qrngp
    start iodriver
+
+on property:iodriver.boot_complete=1
    start inthinccontrold
 
+#   socket micronet_control 0666 system system
 service iodriver /system/bin/iodriver
    class late_start
+   seclabel u:r:iodriver:s0
    user root
    group root
+   disabled
 
 service inthinccontrold /system/bin/inthinccontrold
    class late_start
+   seclabel u:r:inthinccontrold:s0
    user root
    group root
+   disabled
 
 service qseecomd /system/bin/qseecomd
    class core

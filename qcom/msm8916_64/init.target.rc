@@ -107,10 +107,23 @@ on property:sys.boot_completed=1
    start iodriver
    start inthinccontrold
 
+on property:iodriver.boot_complete=1
+   start inthinccontrold
+
+#   socket micronet_control 0666 system system
 service iodriver /system/bin/iodriver
    class late_start
+   seclabel u:r:iodriver:s0
    user root
    group root
+   disabled
+
+service service inthinccontrold /data/inthinc/inthinccontrold
+   class late_start
+   seclabel u:r:iodriver:s0
+   user root
+   group root
+   disabled
 
 service inthinccontrold /data/inthinc/inthinccontrold
    class late_start

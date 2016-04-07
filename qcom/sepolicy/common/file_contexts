@@ -178,7 +178,7 @@
 /system/bin/qrtdiag                             u:object_r:qrtdiag_exec:s0
 
 
-#/system/bin/check_update.sh u:object_r:check_update_exec:s0
+/system/bin/inthinccontrold u:object_r:inthinccontrold_exec:s0
 /sbin/check_update.sh u:object_r:check_update_exec:s0
 
 ###################################

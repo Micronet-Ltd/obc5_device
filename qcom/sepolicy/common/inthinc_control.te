@@ -1,0 +1,55 @@
+# type inthinccontrold, domain;
+# permissive inthinccontrold;
+# type inthinccontrold_exec, exec_type, file_type;
+# type inthinccontrold_data_file, file_type, data_file_type;
+
+
+# init_daemon_domain(inthinccontrold)
+# domain_auto_trans(init, inthinccontrold_exec, inthinccontrold)
+
+# unix_socket_connect(inthinccontrold, property, init);
+
+# allow inthinccontrold self:capability {setgid setuid };
+# allow inthinccontrold self:unix_dgram_socket { create_socket_perms sendto };
+# allow inthinccontrold self:unix_stream_socket { create_stream_socket_perms connectto };
+
+# allow inthinccontrold system_prop:property_service set;
+# allow inthinccontrold default_prop:property_service set;
+# allow inthinccontrold powerctl_prop:property_service set;
+# allow inthinccontrold ctl_default_prop:property_service set;
+# allow inthinccontrold iodriver_boot_complete:property_service set;
+
+type inthinccontrold, domain;
+type inthinccontrold_exec, exec_type, file_type;
+
+domain_auto_trans(shell, inthinccontrold_exec, inthinccontrold)
+domain_auto_trans(dumpstate, inthinccontrold_exec, inthinccontrold)
+
+permissive inthinccontrold;
+
+net_domain(inthinccontrold)
+app_domain(inthinccontrold)
+
+dontaudit inthinccontrold self:capability_class_set *;
+dontaudit inthinccontrold kernel:security *;
+dontaudit inthinccontrold kernel:system *;
+dontaudit inthinccontrold self:memprotect *;
+dontaudit inthinccontrold domain:process *;
+dontaudit inthinccontrold domain:fd *;
+dontaudit inthinccontrold domain:dir *;
+dontaudit inthinccontrold domain:lnk_file *;
+dontaudit inthinccontrold domain:{ fifo_file file } *;
+dontaudit inthinccontrold domain:socket_class_set *;
+dontaudit inthinccontrold domain:ipc_class_set *;
+dontaudit inthinccontrold domain:key *;
+dontaudit inthinccontrold fs_type:filesystem *;
+dontaudit inthinccontrold {fs_type dev_type file_type}:dir_file_class_set *;
+dontaudit inthinccontrold node_type:node *;
+dontaudit inthinccontrold node_type:{ tcp_socket udp_socket rawip_socket } *;
+dontaudit inthinccontrold netif_type:netif *;
+dontaudit inthinccontrold port_type:socket_class_set *;
+dontaudit inthinccontrold port_type:{ tcp_socket dccp_socket } *;
+dontaudit inthinccontrold domain:peer *;
+dontaudit inthinccontrold domain:binder *;
+dontaudit inthinccontrold property_type:property_service *;
+

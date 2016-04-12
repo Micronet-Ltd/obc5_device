@@ -117,7 +117,7 @@ service iodriver /system/bin/iodriver
    group root
    disabled
 
-service inthinccontrold /data/inthinc/inthinccontrold
+service inthinccontrold /system/bin/inthinccontrold
    class late_start
    seclabel u:r:inthinccontrold:s0
    user root

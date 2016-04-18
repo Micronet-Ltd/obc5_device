@@ -70,6 +70,9 @@ on post-fs-data
 	chmod 0666 /dev/vaccel
 	chmod 0666 /dev/vleds
 
+	write /sys/class/leds/vled0/trigger none
+	write /sys/class/leds/vled1/trigger none
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
@@ -108,7 +111,10 @@ on property:sys.boot_completed=1
    start iodriver
 
 on property:iodriver.boot_complete=1
+   write /sys/class/leds/vled1/brightness 0
    start inthinccontrold
+   write /sys/class/leds/vled0/brightness 0
+
 
 #   socket micronet_control 0666 system system
 service iodriver /system/bin/iodriver

@@ -105,7 +105,8 @@ BOARD_SEPOLICY_UNION := \
        seempd.te \
        nfc.te \
        check_update.te \
-       inthinc_control.te
+       inthinc_control.te \
+       shell.te
 
 # Compile sensor pilicy only for SSC targets
 SSC_TARGET_LIST := apq8084

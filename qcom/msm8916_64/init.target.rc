@@ -68,6 +68,10 @@ on post-fs-data
     chown system system /sys/afe_properties/wake_up_enable
     mkdir /data/nfc 0770 nfc nfc
 	chmod 0666 /dev/vaccel
+	chmod 0666 /dev/vleds
+
+	write /sys/class/leds/vled0/trigger none
+	write /sys/class/leds/vled1/trigger none
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -105,7 +109,12 @@ service qrngp /system/bin/qrngp -f
 on property:sys.boot_completed=1
    start qrngp
    start iodriver
+
+on property:iodriver.boot_complete=1
+   write /sys/class/leds/vled1/brightness 0
    start inthinccontrold
+   write /sys/class/leds/vled0/brightness 0
+
 
 #   socket micronet_control 0666 system system
 service iodriver /system/bin/iodriver
@@ -115,10 +124,12 @@ service iodriver /system/bin/iodriver
    group root
    disabled
 
-service service inthinccontrold /data/inthinc/inthinccontrold
+service inthinccontrold /system/bin/inthinccontrold
    class late_start
+   seclabel u:r:inthinccontrold:s0
    user root
    group root
+   disabled
 
 service qseecomd /system/bin/qseecomd
    class core
@@ -171,6 +182,10 @@ on boot
     setprop ro.nfc.port "I2C"
     chmod 0660 /dev/pn544
     chown nfc nfc /dev/pn544
+
+# RS Temporary add permission 777 for gpio export import
+	chmod 0777 /sys/class/gpio/export
+	chmod 0777 /sys/class/gpio/unexport
 
 service wcnss-service /system/bin/wcnss_service
     class main

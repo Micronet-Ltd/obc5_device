@@ -1,2 +1,3 @@
 #Make adbd daemon permissive for userdebug or eng builds
 allow adbd tombstone_data_file:dir getattr;
+allow adbd inthinccontrold:process dyntransition;

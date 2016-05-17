@@ -19,5 +19,7 @@ recovery_only(`
     allow recovery app_data_file:file create_file_perms;
     allow recovery console_device:chr_file rw_file_perms;
     allow recovery sysfs_red:file create_file_perms;
+    allow recovery check_update_prop:property_service set;
+    allow recovery rb_sys_upd_done:property_service set;
     #adups end
 ')

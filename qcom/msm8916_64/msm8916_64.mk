@@ -195,7 +195,8 @@ PRODUCT_PACKAGES += \
 	log2long \
 	slcan_attach \
 	slcand \
-	slcanpty
+	slcanpty \
+        slcan_tty
 
 PRODUCT_COPY_FILES += device/qcom/msm8916_64/Tfa98xx.cnt:system/etc/Tfa98xx.cnt
 # Defined the locales

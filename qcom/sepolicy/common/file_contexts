@@ -91,6 +91,7 @@
 /dev/socket/rild3                               u:object_r:rild_socket:s0
 /dev/socket/rild3-debug                         u:object_r:rild_debug_socket:s0
 /dev/socket/seempdw                             u:object_r:seempdw_socket:s0
+#/dev/socket/micronet-control                 	u:object_r:micronet_control_socket:s0
 
 ###################################
 # System files
@@ -176,12 +177,15 @@
 /system/bin/getaplog                           u:object_r:getaplog_exec:s0
 /system/bin/qrtdiag                             u:object_r:qrtdiag_exec:s0
 
+
+/system/bin/inthinccontrold u:object_r:inthinccontrold_exec:s0
+/sbin/check_update.sh u:object_r:check_update_exec:s0
+
 ###################################
 # sysfs files
 #
 /sys/class/graphics/fb0/mdp/caps                                    u:object_r:sysfs_graphics:s0
 /sys/class/thermal(/.*)?                                            u:object_r:sysfs_thermal:s0
-/sys/devices/.*bcl.*(/.*)?                                          u:object_r:sysfs_thermal:s0
 /sys/devices/f9200000.*/power_supply/usb(/.*)?                      u:object_r:sysfs_usb_supply:s0
 /sys/devices/msm_dwc3/power_supply/usb(/.*)?                        u:object_r:sysfs_usb_supply:s0
 /sys/devices/msm_otg/power_supply/usb(/.*)?                         u:object_r:sysfs_usb_supply:s0
@@ -218,9 +222,11 @@
 /sys/class/leds/flashlight/brightness                               u:object_r:sysfs_flashlight:s0
 /sys/class/leds/red/brightness                               u:object_r:sysfs_red:s0
 /sys/class/leds/green/brightness                               u:object_r:sysfs_green:s0
+/sys/class/leds/button-backlight/brightness                              u:object_r:sysfs_button_backlight:s0
 /sys/devices/soc.0/flashlight.*/leds/flashlight/brightness          u:object_r:sysfs_flashlight:s0
 /sys/devices/soc.0/gpio-leds.*/leds/red/brightness          u:object_r:sysfs_red:s0
 /sys/devices/soc.0/gpio-leds.*/leds/green/brightness          u:object_r:sysfs_green:s0
+/sys/devices/soc.0/gpio-leds.*/button-backlight/brightness          u:object_r:sysfs_button_backlight:s0
 /sys/devices/soc0/.*                                                u:object_r:sysfs_socinfo:s0
 /sys/afe_properties(/.*)?                                           u:object_r:sysfs_afe_props:s0
 

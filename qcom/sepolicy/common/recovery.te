@@ -3,8 +3,8 @@ recovery_only(`
     allow recovery sdcard_type:dir r_dir_perms;
     allow recovery sdcard_type:file r_file_perms;
     allow recovery vfat:dir r_dir_perms;
-    allow recovery vfat:file r_file_perms;
     allow recovery system_data_file:file r_file_perms;
+    allow recovery vfat:file r_file_perms;
     allow recovery system_data_file:dir r_dir_perms;
     allow recovery rfs_system_file:{file lnk_file } { create_file_perms relabelfrom relabelto };
     allow recovery rfs_system_file:dir { create_dir_perms relabelfrom relabelto };
@@ -17,5 +17,9 @@ recovery_only(`
     allow recovery system_data_file:file create_file_perms;
     allow recovery app_data_file:dir create_dir_perms;
     allow recovery app_data_file:file create_file_perms;
+    allow recovery console_device:chr_file rw_file_perms;
+    allow recovery sysfs_red:file create_file_perms;
+    allow recovery check_update_prop:property_service set;
+    allow recovery rb_sys_upd_done:property_service set;
     #adups end
 ')

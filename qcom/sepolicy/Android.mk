@@ -103,7 +103,10 @@ BOARD_SEPOLICY_UNION := \
        dtsconfigurator.te \
        wfdservice.te \
        seempd.te \
-       nfc.te
+       nfc.te \
+       check_update.te \
+       inthinc_control.te \
+       shell.te
 
 # Compile sensor pilicy only for SSC targets
 SSC_TARGET_LIST := apq8084
@@ -116,5 +119,8 @@ SSC_TARGET_LIST += msm8994
 BOARD_SEPOLICY_UNION += sensors.te
 BOARD_SEPOLICY_UNION += sensors_test.te
 #endif
+
+#qj add for secure space
+include $(TOPDIR)vendor/graphiteplus/proprietary/sepolicy/Android.mk
 
 endif

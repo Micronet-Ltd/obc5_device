@@ -1,0 +1,113 @@
+# service check_update in init.rc
+type check_update, domain;
+type check_update_exec, exec_type, file_type;
+
+init_daemon_domain(check_update)
+
+domain_auto_trans(init, check_update_exec, check_update)
+domain_auto_trans(shell, su_exec, su)
+domain_auto_trans(check_update, shell_exec, shell)
+#domain_auto_trans(shell, check_update_exec, check_update)
+#domain_auto_trans(adbd, check_update_exec, check_update)
+
+allow check_update self:capability { chown dac_override fowner fsetid setfcap setuid setgid sys_admin sys_tty_config };
+
+# Set security contexts on files that are not known to the loaded policy.
+allow check_update self:capability2 mac_admin;
+
+# /sbin/check_update.sh is a shell script.
+# Needs to execute /system/bin/sh
+allow check_update shell_exec:file rx_file_perms;
+
+# Execute /sbin/rb_ua
+allow check_update system_file:file rx_file_perms;
+
+# Update the check_update block device
+# TODO: Limit this to only check_update block device when we
+# create an appropriate label for it.
+allow check_update block_device:dir search;
+allow check_update block_device:blk_file rw_file_perms;
+
+# Create and delete /cache/saved.file
+allow check_update cache_file:dir rw_dir_perms;
+allow check_update cache_file:file create_file_perms;
+
+# Write to /proc/sys/vm/drop_caches
+# TODO: create a specific label for this file instead of allowing
+# write for all /proc files.
+allow check_update proc:file w_file_perms;
+
+allow check_update system_prop:property_service set;
+allow check_update default_prop:property_service set;
+allow check_update powerctl_prop:property_service set;
+#allow check_update security_prop:property_service set;
+allow check_update property_type:property_service set;
+allow check_update check_update_prop:property_service set;
+
+unix_socket_connect(check_update, property, init)
+allow check_update ctl_default_prop:property_service set;
+
+# Run helpers from / or /system without changing domain.
+allow check_update rootfs:file execute_no_trans;
+allow check_update rootfs:file relabelfrom;
+allow check_update rootfs:file execute;
+allow check_update system_file:file execute_no_trans;
+
+# Mount filesystems.
+allow check_update rootfs:dir mounton;
+allow check_update fs_type:filesystem ~relabelto;
+allow check_update unlabeled:filesystem ~relabelto;
+allow check_update contextmount_type:filesystem relabelto;
+
+# Root fs.
+allow check_update rootfs:dir r_dir_perms;
+allow check_update rootfs:file r_file_perms;
+allow check_update rootfs:lnk_file r_file_perms;
+
+# Create and relabel files and directories under /system.
+allow check_update exec_type:{ file lnk_file } { create_file_perms relabelfrom relabelto };
+allow check_update system_file:{ file lnk_file } { create_file_perms relabelfrom relabelto };
+allow check_update system_file:dir { create_dir_perms relabelfrom relabelto };
+
+# We may be asked to set an SELinux label for a type not known to the
+# currently loaded policy. Allow it.
+allow check_update unlabeled:{ file lnk_file } { create_file_perms relabelfrom relabelto };
+allow check_update unlabeled:dir { create_dir_perms relabelfrom relabelto };
+
+allow check_update exec_type:dir { create_dir_perms relabelfrom relabelto };
+auditallow check_update exec_type:dir { create_dir_perms relabelfrom relabelto };
+
+allow check_update sysfs:file w_file_perms;
+
+# Required to e.g. wipe userdata/cache.
+allow check_update device:dir r_dir_perms;
+allow check_update block_device:dir r_dir_perms;
+allow recovery dev_type:blk_file rw_file_perms;
+
+# Manage files on /cache
+allow check_update cache_file:dir create_dir_perms;
+allow check_update cache_file:file create_file_perms;
+
+# Allow check_update to create a fuse filesystem, and read files from it.
+# Read files on /sdcard
+allow check_update sdcard_type:dir r_dir_perms;
+allow check_update sdcard_type:file r_file_perms;
+allow check_update vfat:dir r_dir_perms;
+allow check_update system_data_file:file r_file_perms;
+allow check_update vfat:file r_file_perms;
+allow check_update system_data_file:dir r_dir_perms;
+allow check_update rfs_system_file:{file lnk_file } { create_file_perms relabelfrom relabelto };
+allow check_update rfs_system_file:dir { create_dir_perms relabelfrom relabelto };
+
+allow check_update fuse_device:chr_file rw_file_perms;
+allow check_update fuse:dir r_dir_perms;
+allow check_update fuse:file r_file_perms;
+allow check_update system_app_data_file:dir create_dir_perms;
+allow check_update system_app_data_file:file create_file_perms;
+allow check_update media_rw_data_file:dir create_dir_perms;
+allow check_update media_rw_data_file:file create_file_perms;
+allow check_update system_data_file:dir create_dir_perms;
+allow check_update system_data_file:file create_file_perms;
+allow check_update app_data_file:dir create_dir_perms;
+allow check_update app_data_file:file create_file_perms;
+

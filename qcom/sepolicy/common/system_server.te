@@ -72,3 +72,6 @@ allow system_server dhcp_data_file:file { read getattr open };
 
 #For FRP
 allow system_server persistent_data_block_device:blk_file rw_file_perms;
+
+#added by xuegang for button backlight 20160105
+allow system_server sysfs_button_backlight:file rw_file_perms;

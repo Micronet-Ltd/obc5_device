@@ -108,6 +108,9 @@ type sysfs_flashlight, sysfs_type, fs_type;
 type sysfs_red, sysfs_type, fs_type;
 type sysfs_green, sysfs_type, fs_type;
 
+#Define the sysfs files for button backlight
+type sysfs_button_backlight, sysfs_type, fs_type;
+
 #Define the files for the operation of QDCM
 type persist_display_file, file_type;
 
@@ -150,3 +153,7 @@ type qrtdiag_data_file, file_type, data_file_type;
 
 #File types by qrtdiag
 type qrtdiag_socket, file_type;
+
+#micronet_control
+#type micronet_control_socket, file_type;
+

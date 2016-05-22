@@ -67,11 +67,16 @@ on post-fs-data
     chown system system /sys/afe_properties/hallib_name
     chown system system /sys/afe_properties/wake_up_enable
     mkdir /data/nfc 0770 nfc nfc
-	chmod 0666 /dev/vaccel
-	chmod 0666 /dev/vleds
+    chmod 0666 /dev/vaccel
+    chmod 0666 /dev/vleds
+    chmod 0666 /dev/ttyACM0
+    chmod 0666 /dev/ttyACM1
+    chmod 0666 /dev/ttyACM2
+    chmod 0666 /dev/ttyACM3
+    chmod 0666 /dev/ttyACM4
 
-	write /sys/class/leds/vled0/trigger none
-	write /sys/class/leds/vled1/trigger none
+    write /sys/class/leds/vled0/trigger none
+    write /sys/class/leds/vled1/trigger none
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon

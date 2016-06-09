@@ -75,6 +75,10 @@ on post-fs-data
     chmod 0666 /dev/ttyACM3
     chmod 0666 /dev/ttyACM4
 
+	mkdir /cache/workdir
+	chown system:system /cache/workdir
+	chmod 755 /cache/workdir
+
     write /sys/class/leds/vled0/trigger none
     write /sys/class/leds/vled1/trigger none
 

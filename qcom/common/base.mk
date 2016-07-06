@@ -608,29 +608,44 @@ WLAN += pronto_wlan.ko
 #remove by wenjs begin
 #VoiceDialer \
 #remove by wenjs end
+#remove by RS
+#    DeskClock \
+#    Calculator \
+#    Calendar \
+#    LunarService \
+#    Email \
+#    Gallery2 \
+#    Music \
+#    Protips \
+#    QuickSearchBox \
+#    FM2 \
+#    MyNotes \
+#    FMRecord \
+#    VideoEditor
+#~remove by RS
 PRODUCT_PACKAGES := \
     AccountAndSyncSettings \
     ApplicationsProvider \
-    DeskClock \
+-   DeskClock \
     AlarmProvider \
     Bluetooth \
     Browser \
-    Calculator \
-    Calendar \
-    LunarService \
+-   Calculator \
+-   Calendar \
+-   LunarService \
     Camera2 \
-    CellBroadcastReceiver \
+-   CellBroadcastReceiver \
     CertInstaller \
     DrmProvider \
-    Email \
-    Gallery2 \
+-   Email \
+-   Gallery2 \
     LatinIME \
     Mms \
-    Music \
+-   Music \
     Phone \
     Provision \
-    Protips \
-    QuickSearchBox \
+-   Protips \
+-   QuickSearchBox \
     Settings \
     Sync \
     SystemUI \
@@ -638,12 +653,12 @@ PRODUCT_PACKAGES := \
     CalendarProvider \
     SyncProvider \
     IM \
-    FM2 \
+-   FM2 \
     qrtdiag \
     QrtSetProp \
-    MyNotes \
-    FMRecord \
-    VideoEditor
+-   MyNotes \
+-   FMRecord \
+-   VideoEditor
 
 # modified for qrt get log by xuegang 20150819 begin
 PRODUCT_PACKAGES += getaplog  \

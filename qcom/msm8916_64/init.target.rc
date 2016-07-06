@@ -54,6 +54,8 @@ on fs
     write /sys/kernel/boot_adsp/boot 1
 
 on post-fs-data
+    symlink /dev/ttyACM0 /dev/ttyMICRONET_CONTROL
+    symlink /dev/ttyACM1 /dev/ttyMICRONET_ACCEL
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system

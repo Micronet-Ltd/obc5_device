@@ -56,6 +56,7 @@ on fs
 on post-fs-data
     symlink /dev/ttyACM0 /dev/ttyMICRONET_CONTROL
     symlink /dev/ttyACM1 /dev/ttyMICRONET_ACCEL
+    symlink /dev/ttyACM4 /dev/ttyMICRONET_J1708
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
@@ -71,6 +72,8 @@ on post-fs-data
     mkdir /data/nfc 0770 nfc nfc
     chmod 0666 /dev/vaccel
     chmod 0666 /dev/vleds
+    chmod 0666 /dev/mcu_j1708
+    chmod 0666 /dev/j1708
     chmod 0666 /dev/ttyACM0
     chmod 0666 /dev/ttyACM1
     chmod 0666 /dev/ttyACM2

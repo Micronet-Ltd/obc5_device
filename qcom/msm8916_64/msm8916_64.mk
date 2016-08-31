@@ -26,7 +26,9 @@ endif
 TARGET_USES_QCA_NFC := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-           dalvik.vm.heapgrowthlimit=128m
+           dalvik.vm.heapgrowthlimit=128m \
+           ro.config.low_ram=true \
+           dalvik.vm.jit.codecachesize=0
 $(call inherit-product, device/qcom/common/common64.mk)
 
 PRODUCT_NAME := msm8916_64

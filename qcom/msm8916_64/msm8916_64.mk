@@ -26,7 +26,9 @@ endif
 TARGET_USES_QCA_NFC := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-           dalvik.vm.heapgrowthlimit=128m
+           dalvik.vm.heapgrowthlimit=128m \
+           ro.config.low_ram=true \
+           dalvik.vm.jit.codecachesize=0
 $(call inherit-product, device/qcom/common/common64.mk)
 
 PRODUCT_NAME := msm8916_64
@@ -197,6 +199,10 @@ PRODUCT_PACKAGES += \
 	slcand \
 	slcanpty \
         slcan_tty
+
+# Inthinc Applpication
+# PRODUCT_PACKAGES += InthincControl
+# PRODUCT_COPY_FILES += product_config/3rd/inthinc/inthinccontrold/inthinccontrold:system/bin/inthinccontrold
 
 PRODUCT_COPY_FILES += device/qcom/msm8916_64/Tfa98xx.cnt:system/etc/Tfa98xx.cnt
 # Defined the locales

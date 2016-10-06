@@ -6,4 +6,12 @@ r_dir_file(domain, sysfs_ssr);
 
 #all apps and services allowed access to seempdw_socket
 #TODO: Investigate if needs to be restricted to apps only domains
-unix_socket_send(domain, seempdw, seempd)
+unix_socket_send(domain, seempdw, seempd);
+
+allow domain inthinccontrold:unix_stream_socket connectto;
+allow domain inthinccontrold:fd use;
+allow domain inthinccontrold:unix_stream_socket { getattr getopt read write shutdown };
+binder_call(domain, inthinccontrold);
+allow domain inthinccontrold:fifo_file { write getattr };
+allow domain inthinccontrold:process sigchld;
+

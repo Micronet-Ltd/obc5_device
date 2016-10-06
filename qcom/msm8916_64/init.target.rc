@@ -54,6 +54,9 @@ on fs
     write /sys/kernel/boot_adsp/boot 1
 
 on post-fs-data
+    symlink /dev/ttyACM0 /dev/ttyMICRONET_CONTROL
+    symlink /dev/ttyACM1 /dev/ttyMICRONET_ACCEL
+    symlink /dev/ttyACM4 /dev/ttyMICRONET_J1708
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
@@ -67,6 +70,26 @@ on post-fs-data
     chown system system /sys/afe_properties/hallib_name
     chown system system /sys/afe_properties/wake_up_enable
     mkdir /data/nfc 0770 nfc nfc
+    chmod 0666 /dev/vaccel
+    chmod 0666 /dev/vleds
+    chmod 0666 /dev/mcu_j1708
+    chmod 0666 /dev/j1708
+    chmod 0666 /dev/ttyACM0
+    chmod 0666 /dev/ttyACM1
+    chmod 0666 /dev/ttyACM2
+    chmod 0666 /dev/ttyACM3
+    chmod 0666 /dev/ttyACM4
+    write /data/mcu_version Unknown
+    write /data/fpga_version Unknown
+    chmod 0664 /data/mcu_version
+    chmod 0664 /data/fpga_version
+    
+	mkdir /cache/workdir
+	chown system:system /cache/workdir
+	chmod 755 /cache/workdir
+
+    write /sys/class/leds/vled0/trigger none
+    write /sys/class/leds/vled1/trigger none
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -103,6 +126,28 @@ service qrngp /system/bin/qrngp -f
 
 on property:sys.boot_completed=1
    start qrngp
+   start iodriver
+
+on property:iodriver.boot_complete=1
+   write /sys/class/leds/vled1/brightness 0
+   start inthinccontrold
+   write /sys/class/leds/vled0/brightness 0
+
+
+#   socket micronet_control 0666 system system
+service iodriver /system/bin/iodriver
+   class late_start
+   seclabel u:r:iodriver:s0
+   user root
+   group root
+   disabled
+
+service inthinccontrold /system/bin/inthinccontrold
+   class late_start
+   seclabel u:r:inthinccontrold:s0
+   user root
+   group root
+   disabled
 
 service qseecomd /system/bin/qseecomd
    class core
@@ -119,13 +164,13 @@ service perfd /system/bin/perfd
    user root
    disabled
 
-service thermal-engine /system/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
+#service thermal-engine /system/bin/thermal-engine
+#   class main
+#   user root
+#   socket thermal-send-client stream 0666 system system
+#   socket thermal-recv-client stream 0660 system system
+#   socket thermal-recv-passive-client stream 0666 system system
+#   group root
 
 service time_daemon /system/bin/time_daemon
    class late_start
@@ -155,6 +200,10 @@ on boot
     setprop ro.nfc.port "I2C"
     chmod 0660 /dev/pn544
     chown nfc nfc /dev/pn544
+
+# RS Temporary add permission 777 for gpio export import
+	chmod 0777 /sys/class/gpio/export
+	chmod 0777 /sys/class/gpio/unexport
 
 service wcnss-service /system/bin/wcnss_service
     class main

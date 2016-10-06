@@ -104,7 +104,7 @@ ro.qc.sdk.audio.ssr=false
 ro.qc.sdk.audio.fluencetype=none
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
-persist.audio.fluence.speaker=true
+persist.audio.fluence.speaker=false
 #Set for msm8916
 tunnel.audio.encode = false
 #Buffer size in kbytes for compress offload playback

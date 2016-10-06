@@ -26,12 +26,14 @@ endif
 TARGET_USES_QCA_NFC := false
 
 PRODUCT_PROPERTY_OVERRIDES += \
-           dalvik.vm.heapgrowthlimit=128m
+           dalvik.vm.heapgrowthlimit=128m \
+           ro.config.low_ram=true \
+           dalvik.vm.jit.codecachesize=0
 $(call inherit-product, device/qcom/common/common64.mk)
 
 PRODUCT_NAME := msm8916_64
 PRODUCT_DEVICE := msm8916_64
-PRODUCT_BRAND := Android
+#PRODUCT_BRAND := Android
 #PRODUCT_MODEL := MSM8916 for arm64
 
 ifeq ($(strip $(TARGET_USES_QTIC)),true)
@@ -51,7 +53,7 @@ PRODUCT_BOOT_JARS += vcard
 PRODUCT_BOOT_JARS += tcmiface
 
 # default is nosdcard, S/W button enabled in resource
-PRODUCT_CHARACTERISTICS := nosdcard
+#PRODUCT_CHARACTERISTICS := nosdcard
 
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
@@ -102,6 +104,9 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     p2p_supplicant_overlay.conf
 
+PRODUCT_COPY_FILES += \
+    device/qcom/msm8916_64/.bt_nv.bin:persist/.bt_nv.bin
+	
 # NFC packages
 ifeq ($(TARGET_HAS_NFC_CUSTOM_CONFIG),true)
 
@@ -166,6 +171,39 @@ PRODUCT_PACKAGES += QrtFactoryKit
 PRODUCT_PACKAGES += climax_hostSW
 PRODUCT_PACKAGES += tfa9897
 PRODUCT_PACKAGES += libtfa9897
+
+#CANbus tools
+PRODUCT_PACKAGES += \
+	libcan \
+	candump \
+	cansend \
+	bcmserver \
+	can-calc-bit-timing \
+	canbusload \
+	canfdtest \
+	cangen \
+	cangw \
+	canlogserver \
+	canplayer \
+	cansniffer \
+	isotpdump \
+	isotprecv \
+	isotpsend \
+	isotpserver \
+	isotpsniffer \
+	isotptun \
+	isotpperf \
+	log2asc \
+	log2long \
+	slcan_attach \
+	slcand \
+	slcanpty \
+        slcan_tty
+
+# Inthinc Applpication
+# PRODUCT_PACKAGES += InthincControl
+# PRODUCT_COPY_FILES += product_config/3rd/inthinc/inthinccontrold/inthinccontrold:system/bin/inthinccontrold
+
 PRODUCT_COPY_FILES += device/qcom/msm8916_64/Tfa98xx.cnt:system/etc/Tfa98xx.cnt
 # Defined the locales
 PRODUCT_LOCALES += th_TH vi_VN tl_PH hi_IN ar_EG ru_RU tr_TR pt_BR bn_IN mr_IN ta_IN te_IN zh_HK \
@@ -178,8 +216,21 @@ PRODUCT_PACKAGE_OVERLAYS := $(QCPATH)/qrdplus/Extension/res-overlay \
 endif
 
 #added by shengweiguang for cd-rom iso copy begin 2015/10/27 begin
-PRODUCT_COPY_FILES += device/qcom/msm8916_32/EHANGAUTOINST.ISO:system/etc/EHANGAUTOINST.ISO
+PRODUCT_COPY_FILES += device/qcom/msm8916_64/EHANGAUTOINST.ISO:system/etc/EHANGAUTOINST.ISO
 #added by shengweiguang for cd-rom iso copy end	 2015/10/27  end
+
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua.conf:system/etc/rb_ua.conf
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua_sd.conf:system/etc/rb_ua_sd.conf
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:system/bin/rb_ua
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_recovery.fstab:system/etc/rb_recovery.fstab
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
+PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/rb_ua:root/sbin/rb_ua
+PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/iodriver:root/sbin/iodriver
+#PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/xbin/su:root/sbin/
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update.sh:root/sbin/check_update.sh
+PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update_s.sh:system/bin/check_update.sh
+#test
+#PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/test.txt:system/etc/test.txt
 
 PRODUCT_SUPPORTS_VERITY := true
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system

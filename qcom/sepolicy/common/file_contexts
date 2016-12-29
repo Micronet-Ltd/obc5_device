@@ -62,7 +62,7 @@
 /dev/jdi-bu21150                                u:object_r:bu21150_device:s0
 /dev/voice_svc                                  u:object_r:voice_device:s0
 /dev/block/bootdevice/by-name/config            u:object_r:persistent_data_block_device:s0
-
+/dev/suspend_timeout				u:object_r:suspend_timeout:s0
 ###################################
 # Dev socket nodes
 #
@@ -180,6 +180,7 @@
 
 /system/bin/inthinccontrold u:object_r:inthinccontrold_exec:s0
 /sbin/check_update.sh u:object_r:check_update_exec:s0
+/system/bin/suspend_service u:object_r:suspend_service_exec:s0
 
 ###################################
 # sysfs files

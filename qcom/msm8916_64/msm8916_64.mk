@@ -226,6 +226,7 @@ PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_recovery.fstab:
 #PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/rb_ua:root/sbin/rb_ua
 PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/rb_ua:root/sbin/rb_ua
 PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/iodriver:root/sbin/iodriver
+PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/bin/suspend_service:root/sbin/suspend_service
 #PRODUCT_COPY_FILES += out/target/product/msm8916_64/system/xbin/su:root/sbin/
 PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update.sh:root/sbin/check_update.sh
 PRODUCT_COPY_FILES += product_config/3rd/rb_fota_update/setup/check_update_s.sh:system/bin/check_update.sh

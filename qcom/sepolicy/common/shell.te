@@ -5,3 +5,5 @@ allow shell default_prop:property_service set;
 allow shell powerctl_prop:property_service set;
 allow shell ctl_default_prop:property_service set;
 allow shell iodriver_boot_complete:property_service set;
+allow shell suspend_timeout:file *;
+allow shell suspend_timeout:chr_file *;

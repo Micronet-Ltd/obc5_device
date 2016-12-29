@@ -1,0 +1,33 @@
+type suspend_service, domain;
+permissive iodriver;
+type suspend_service_exec, exec_type, file_type;
+
+init_daemon_domain(suspend_service)
+
+domain_auto_trans(init, suspend_service_exec, suspend_service)
+domain_auto_trans(shell, su_exec, su)
+domain_auto_trans(suspend_service, shell_exec, shell)
+#domain_auto_trans(shell, suspend_service_exec, suspend_service)
+#domain_auto_trans(adbd, suspend_service_exec, suspend_service)
+
+allow suspend_service self:capability { chown dac_override fowner fsetid setfcap setuid setgid sys_admin sys_tty_config };
+
+#allow suspend_service tmpfs:chr_file { read write getattr };
+allow suspend_service tmpfs:fd {use};
+allow suspend_service shell:fd {use};
+allow suspend_service sysfs:file rw_file_perms;
+allow suspend_service sysfs:chr_file rw_file_perms;
+allow suspend_service tmpfs:chr_file rw_file_perms;
+allow suspend_service suspend_timeout:chr_file rw_file_perms;
+allow suspend_service devpts:chr_file rw_file_perms;
+allow suspend_service system_data_file:file { create setattr append write link unlink rename };
+allow suspend_service system_app_data_file:dir create_dir_perms;
+allow suspend_service system_app_data_file:file create_file_perms;
+allow suspend_service media_rw_data_file:dir create_dir_perms;
+allow suspend_service media_rw_data_file:file create_file_perms;
+allow suspend_service system_data_file:dir create_dir_perms;
+allow suspend_service system_data_file:file create_file_perms;
+allow suspend_service app_data_file:dir create_dir_perms;
+allow suspend_service app_data_file:file create_file_perms;
+allow suspend_service console_device:chr_file rw_file_perms;
+#adups end

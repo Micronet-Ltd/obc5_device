@@ -115,6 +115,7 @@ on boot
 
     # Set adb to be on TCP
     setprop service.adb.tcp.port 5555
+	insmod /system/lib/modules/ftdi_sio.ko 
 
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,

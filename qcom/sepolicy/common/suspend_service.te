@@ -1,24 +1,33 @@
 type suspend_service, domain;
-permissive iodriver;
 type suspend_service_exec, exec_type, file_type;
 
-init_daemon_domain(suspend_service)
+# init_daemon_domain(suspend_service)
 
 domain_auto_trans(init, suspend_service_exec, suspend_service)
-domain_auto_trans(shell, su_exec, su)
+domain_auto_trans(shell, suspend_service_exec, suspend_service)
 domain_auto_trans(suspend_service, shell_exec, shell)
-#domain_auto_trans(shell, suspend_service_exec, suspend_service)
-#domain_auto_trans(adbd, suspend_service_exec, suspend_service)
+domain_auto_trans(adbd, suspend_service_exec, suspend_service)
+
+permissive suspend_service;
+
+#Allow binding with ServiceManager & apps
+binder_use(suspend_service);
+binder_call(suspend_service, system_app);
+binder_call(system_app, suspend_service)
+binder_call(suspend_service, platform_app)
+binder_call(platform_app, suspend_service)
+binder_call(suspend_service, servicemanager);
+binder_call(suspend_service, system_server)
 
 allow suspend_service self:capability { chown dac_override fowner fsetid setfcap setuid setgid sys_admin sys_tty_config };
 
-#allow suspend_service tmpfs:chr_file { read write getattr };
-allow suspend_service tmpfs:fd {use};
+#Allow suspend_service to be registered with service manager
+allow suspend_service sp_service:service_manager add;
 allow suspend_service shell:fd {use};
-allow suspend_service sysfs:file rw_file_perms;
-allow suspend_service sysfs:chr_file rw_file_perms;
-allow suspend_service tmpfs:chr_file rw_file_perms;
+allow suspend_service system_file:file read;
 allow suspend_service suspend_timeout:chr_file rw_file_perms;
+allow suspend_service suspend_timeout:file rw_file_perms;
+allow suspend_service shell_data_file:file { append open read write };
 allow suspend_service devpts:chr_file rw_file_perms;
 allow suspend_service system_data_file:file { create setattr append write link unlink rename };
 allow suspend_service system_app_data_file:dir create_dir_perms;

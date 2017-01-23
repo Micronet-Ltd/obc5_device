@@ -81,9 +81,11 @@ on post-fs-data
     chmod 0666 /dev/ttyACM4
     write /data/mcu_version Unknown
     write /data/fpga_version Unknown
-    chmod 0666 /dev/suspend_timeout
     chmod 0664 /data/mcu_version
     chmod 0664 /data/fpga_version
+    chmod 0666 /dev/suspend_timeout
+    chmod 0666 /dev/ignition_timeout
+    chmod 0666 /dev/ignition_level
     
 	mkdir /cache/workdir
 	chown system:system /cache/workdir

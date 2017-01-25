@@ -94,3 +94,5 @@ type persistent_data_block_device, dev_type;
 
 #Define seemplog device
 type seemplog_device, dev_type;
+
+type suspend_timeout, dev_type;

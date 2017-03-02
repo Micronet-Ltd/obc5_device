@@ -151,7 +151,7 @@ CURL := libcurl
 CURL += curl
 
 #CM
-CM := CMFileManager
+CM := QrtFileManager
 CM += Trebuchet
 CM += Eleven
 
@@ -639,11 +639,18 @@ PRODUCT_PACKAGES := \
     SyncProvider \
     IM \
     FM2 \
-    qrtdiag \
     QrtSetProp \
     MyNotes \
+	ThemeManager \
+	Theme_golden_age \
+	Theme_colorful_space \
+	Theme_blue_classic \
+	Theme_color \
     FMRecord \
     VideoEditor
+ifneq "$(PRODUCT_MANUFACTURER)" "Micronet"
+PRODUCT_PACKAGES += qrtdiag
+endif
 
 # modified for qrt get log by xuegang 20150819 begin
 PRODUCT_PACKAGES += getaplog  \
@@ -663,11 +670,6 @@ PRODUCT_PACKAGES += \
 #       HiddTestApp
 #remove by wenjs end
 endif
-
-MICRONET_PACKAGES := iodriver
-MICRONET_PACKAGES += testframe
-MICRONET_PACKAGES += mctl
-MICRONET_PACKAGES += suspend_service
 
 PRODUCT_PACKAGES += $(ALSA_HARDWARE)
 PRODUCT_PACKAGES += $(ALSA_UCM)
@@ -750,7 +752,6 @@ PRODUCT_PACKAGES += $(VT_JNI)
 PRODUCT_PACKAGES += $(VT_QTI_PERMISSIONS)
 PRODUCT_PACKAGES += $(CRDA)
 PRODUCT_PACKAGES += $(WLAN)
-PRODUCT_PACKAGES += $(MICRONET_PACKAGES)
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -763,6 +764,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
+
+# Qcril configuration file
+PRODUCT_PACKAGES += qcril.db
 
 # Flatland
 PRODUCT_PACKAGES += flatland
@@ -844,4 +848,9 @@ $(call inherit-product, build/target/product/verity.mk)
 #skip boot jars check if QCPATH not available
 ifeq ($(strip $(QCPATH)),)
 SKIP_BOOT_JARS_CHECK := true
+endif
+
+ifeq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES+= \
+    ro.adb.secure=1
 endif

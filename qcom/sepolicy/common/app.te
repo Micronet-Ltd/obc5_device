@@ -11,6 +11,9 @@ allow appdomain qdsp_device:chr_file r_file_perms;
 allow appdomain console_device:chr_file { read write };
 allow appdomain iodriver:unix_dgram_socket { create_socket_perms sendto };
 allow appdomain iodriver:unix_stream_socket { create_stream_socket_perms connectto };
+allow appdomain suspend_timeout:file rw_file_perms;
+allow appdomain suspend_timeout:chr_file rw_file_perms;
+
 # neverallow { appdomain -system_app -radio -shell -bluetooth -nfc -check_update} property_type:property_service set;
 
 # test apps needs to communicate with imscm

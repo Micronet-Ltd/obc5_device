@@ -10,6 +10,6 @@ allow wpa cnd:unix_dgram_socket sendto;
 
 #permission for wpa socket which IMS use to communicate
 allow wpa ims:unix_dgram_socket sendto;
-
+allow wpa system_data_file:file open;
 unix_socket_send(wpa, wpa, inthinccontrold);
 

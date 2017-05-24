@@ -32,3 +32,6 @@ $(call inherit-product-if-exists, vendor/graphiteplus/device-vendor.mk)
 #For fota support
 #$(call inherit-product-if-exists, product_config/3rd/FotaUpdateApp/FotaUpdate.mk)
 $(call inherit-product-if-exists, product_config/3rd/rb_fota_update/rb_fota_update.mk)
+
+
+

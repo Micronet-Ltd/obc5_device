@@ -1,7 +1,12 @@
 # Adding allow rule for search on /fuse
 allow shell sysfs:file rw_file_perms;
+allow shell tmpfs:file rw_file_perms;
 allow shell system_prop:property_service set;
 allow shell default_prop:property_service set;
 allow shell powerctl_prop:property_service set;
 allow shell ctl_default_prop:property_service set;
 allow shell iodriver_boot_complete:property_service set;
+allow shell suspend_timeout:file rw_file_perms;
+allow shell suspend_timeout:chr_file rw_file_perms;
+
+

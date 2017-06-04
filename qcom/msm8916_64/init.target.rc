@@ -83,6 +83,9 @@ on post-fs-data
     write /data/fpga_version Unknown
     chmod 0664 /data/mcu_version
     chmod 0664 /data/fpga_version
+    chmod 0666 /dev/suspend_timeout
+    chmod 0666 /dev/ignition_timeout
+    chmod 0666 /dev/ignition_level
     
 	mkdir /cache/workdir
 	chown system:system /cache/workdir
@@ -127,6 +130,7 @@ service qrngp /system/bin/qrngp -f
 on property:sys.boot_completed=1
    start qrngp
    start iodriver
+   start suspend_service
 
 on property:iodriver.boot_complete=1
    write /sys/class/leds/vled1/brightness 0
@@ -140,6 +144,14 @@ service iodriver /system/bin/iodriver
    seclabel u:r:iodriver:s0
    user root
    group root
+   disabled
+
+service suspend_service /system/bin/suspend_service
+   class late_start
+   seclabel u:r:suspend_service:s0
+   user root
+   group root
+   oneshot
    disabled
 
 service inthinccontrold /system/bin/inthinccontrold

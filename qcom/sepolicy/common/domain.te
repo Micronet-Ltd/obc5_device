@@ -14,4 +14,5 @@ allow domain inthinccontrold:unix_stream_socket { getattr getopt read write shut
 binder_call(domain, inthinccontrold);
 allow domain inthinccontrold:fifo_file { write getattr };
 allow domain inthinccontrold:process sigchld;
+allow domain suspend_service:fd use;
 

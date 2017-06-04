@@ -643,9 +643,7 @@ PRODUCT_PACKAGES := \
     MyNotes \
 	ThemeManager \
 	Theme_golden_age \
-	Theme_colorful_space \
 	Theme_blue_classic \
-	Theme_color \
     FMRecord \
     VideoEditor
 ifneq "$(PRODUCT_MANUFACTURER)" "Micronet"

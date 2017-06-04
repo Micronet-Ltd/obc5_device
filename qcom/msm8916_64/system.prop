@@ -174,3 +174,6 @@ ro.core_ctl_max_cpu=4
 
 # system property for PIP support
 persist.camera.pip.support=0
+
+# audio by skj
+ro.audio.flinger_standbytime_ms=1000

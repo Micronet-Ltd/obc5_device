@@ -16,3 +16,11 @@ allow domain inthinccontrold:fifo_file { write getattr };
 allow domain inthinccontrold:process sigchld;
 allow domain suspend_service:fd use;
 
+
+allow domain se_dom_ex:unix_stream_socket connectto;
+allow domain se_dom_ex:fd use;
+allow domain se_dom_ex:unix_stream_socket { getattr getopt read write shutdown };
+binder_call(domain, se_dom_ex);
+allow domain se_dom_ex:fifo_file { write getattr };
+allow domain se_dom_ex:process sigchld;
+

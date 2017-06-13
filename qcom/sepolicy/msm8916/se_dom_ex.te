@@ -1,0 +1,44 @@
+# custom external update
+type se_dom_ex, domain;
+type se_dom_ex_exec, exec_type, file_type;
+
+domain_auto_trans(shell, se_dom_ex_exec, se_dom_ex)
+domain_auto_trans(dumpstate, se_dom_ex_exec, se_dom_ex)
+
+permissive se_dom_ex;
+
+net_domain(se_dom_ex)
+app_domain(se_dom_ex)
+
+# make se_dom_ex_exec files a enrtypoint to se_dom_ex domain
+#allow se_dom_ex se_dom_ex_exec : file {read getattr entrypoint open execute} ;
+auditallow se_dom_ex se_dom_ex_exec : file *;
+
+
+
+auditallow se_dom_ex domain : process *;
+
+
+dontaudit se_dom_ex self:capability_class_set *;
+dontaudit se_dom_ex kernel:security *;
+dontaudit se_dom_ex kernel:system *;
+dontaudit se_dom_ex self:memprotect *;
+dontaudit se_dom_ex domain:process *;
+dontaudit se_dom_ex domain:fd *;
+dontaudit se_dom_ex domain:dir *;
+dontaudit se_dom_ex domain:lnk_file *;
+dontaudit se_dom_ex domain:{ fifo_file file } *;
+dontaudit se_dom_ex domain:socket_class_set *;
+dontaudit se_dom_ex domain:ipc_class_set *;
+dontaudit se_dom_ex domain:key *;
+dontaudit se_dom_ex fs_type:filesystem *;
+dontaudit se_dom_ex {fs_type dev_type file_type}:dir_file_class_set *;
+dontaudit se_dom_ex node_type:node *;
+dontaudit se_dom_ex node_type:{ tcp_socket udp_socket rawip_socket } *;
+dontaudit se_dom_ex netif_type:netif *;
+dontaudit se_dom_ex port_type:socket_class_set *;
+dontaudit se_dom_ex port_type:{ tcp_socket dccp_socket } *;
+dontaudit se_dom_ex domain:peer *;
+dontaudit se_dom_ex domain:binder *;
+dontaudit se_dom_ex property_type:property_service *;
+

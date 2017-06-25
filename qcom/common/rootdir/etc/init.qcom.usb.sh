@@ -29,7 +29,8 @@
 #
 
 #added by shengweiguang for usb serial number 2015-08-13 begin
-uniqueserialno=`cat /persist/serialno`
+uniqueserialno=1
+#`cat /persist/serialno`
 serialnum=`getprop ro.serialno`
 case "$uniqueserialno" in
        0 | "")

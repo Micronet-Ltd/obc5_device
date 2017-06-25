@@ -251,3 +251,8 @@
 
 #TP
 /dev/input/event1       0666   system     system
+
+#sensors
+/dev/input/event7       0666   system     system
+/dev/input/event3       0666   system     system
+/sys/class/sensors/rpr0521c-proximity/calibrate  0660    input    system

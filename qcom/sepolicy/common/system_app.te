@@ -37,6 +37,8 @@ allow system_app sysfs_button_backlight:file rw_file_perms;
 allow system_app cnd_data_file:dir w_dir_perms;
 allow system_app cnd_data_file:file create_file_perms;
 allow system_app bluetooth:unix_stream_socket ioctl;
+allow system_app media_rw_data_file:dir search;
+allow system_app media_rw_data_file:file open;
 
 # access to tee domain
 allow system_app tee:unix_dgram_socket sendto;
@@ -74,3 +76,11 @@ allow system_app seemp_file:{ file fifo_file } rw_file_perms;
 #added by xuegang for audio case 
 allow system_app audio_device:dir r_dir_perms;
 allow system_app audio_device:chr_file rw_file_perms;
+
+allow system_app input_device:chr_file rw_file_perms;
+allow system_app input_device:dir {open read write search};
+allow system_app sensors_persist_file:dir {add_name open read create write search append};
+allow system_app sensors_persist_file:file {open read create write append getattr};
+allow system_app system_data_file:file {unlink};
+allow system_app system_data_file:dir {remove_name};
+allow system_app sysfs:file rw_file_perms;

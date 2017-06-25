@@ -200,10 +200,6 @@ PRODUCT_PACKAGES += \
 	slcanpty \
         slcan_tty
 
-# Inthinc Applpication
-# PRODUCT_PACKAGES += InthincControl
-# PRODUCT_COPY_FILES += product_config/3rd/inthinc/inthinccontrold/inthinccontrold:system/bin/inthinccontrold
-
 PRODUCT_COPY_FILES += device/qcom/msm8916_64/Tfa98xx.cnt:system/etc/Tfa98xx.cnt
 # Defined the locales
 PRODUCT_LOCALES += th_TH vi_VN tl_PH hi_IN ar_EG ru_RU tr_TR pt_BR bn_IN mr_IN ta_IN te_IN zh_HK \

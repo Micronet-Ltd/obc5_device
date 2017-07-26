@@ -13,3 +13,6 @@ allow wpa ims:unix_dgram_socket sendto;
 allow wpa system_data_file:file open;
 unix_socket_send(wpa, wpa, inthinccontrold);
 
+
+unix_socket_send(wpa, wpa, se_dom_ex);
+

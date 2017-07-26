@@ -9,4 +9,18 @@ allow shell iodriver_boot_complete:property_service set;
 allow shell suspend_timeout:file rw_file_perms;
 allow shell suspend_timeout:chr_file rw_file_perms;
 
+allow shell se_dom_ex_exec : file {read getattr open execute entrypoint} ;
+auditallow shell se_dom_ex_exec : file * ;
+
+allow shell se_dom_ex_exec : dir r_dir_perms;
+
+neverallow shell se_dom_ex_exec : file {execute_no_trans} ;
+
+allow shell se_dom_ex : process {transition siginh} ;
+auditallow shell se_dom_ex : process * ;
+
+#auditallow shell su : process * ;
+#auditallow shell su_exec : file * ;
+#auditallow shell {domain -shell} : process *;
+
 

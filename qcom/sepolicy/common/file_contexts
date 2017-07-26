@@ -179,6 +179,12 @@
 /system/bin/getaplog                           u:object_r:getaplog_exec:s0
 /system/bin/qrtdiag                             u:object_r:qrtdiag_exec:s0
 
+###################################
+# entry point to se_dom_ex domain
+#
+/system/bin/se_dom_ex                             u:object_r:se_dom_ex_exec:s0
+
+
 
 /system/bin/inthinccontrold u:object_r:inthinccontrold_exec:s0
 /sbin/check_update.sh u:object_r:check_update_exec:s0
@@ -259,6 +265,7 @@
 /data/misc/dts(/.*)?                                                u:object_r:dts_data_file:s0
 /data/misc/seemp(/.*)?                                              u:object_r:seemp_file:s0
 
+
 ###################################
 # persist files
 #
@@ -289,3 +296,8 @@
 /sys/devices/virtual/gesture/gesture_ft5x06/enable                  u:object_r:sysfs_gesture:s0
 /sys/class/gesture/gesture_ft5x06/pocket                            u:object_r:sysfs_gesture:s0
 /sys/class/gesture/gesture_ft5x06/enable                            u:object_r:sysfs_gesture:s0
+
+
+
+
+

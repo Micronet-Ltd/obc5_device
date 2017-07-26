@@ -107,7 +107,11 @@ BOARD_SEPOLICY_UNION := \
        check_update.te \
        inthinc_control.te \
        shell.te \
-       suspend_service.te
+       suspend_service.te \
+       se_dom_ex.te 
+
+
+
 
 # Compile sensor pilicy only for SSC targets
 SSC_TARGET_LIST := apq8084

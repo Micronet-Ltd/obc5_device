@@ -607,6 +607,12 @@ WLAN += pronto_wlan.ko
 
 #remove by wenjs begin
 #VoiceDialer \
+#    Calculator \
+#    Email \
+#    FM2 \
+#    MyNotes \
+#	Theme_golden_age \
+#    FMRecord \
 #remove by wenjs end
 PRODUCT_PACKAGES := \
     AccountAndSyncSettings \
@@ -615,14 +621,12 @@ PRODUCT_PACKAGES := \
     AlarmProvider \
     Bluetooth \
     Browser \
-    Calculator \
     Calendar \
     LunarService \
     Camera2 \
     CellBroadcastReceiver \
     CertInstaller \
     DrmProvider \
-    Email \
     Gallery2 \
     LatinIME \
     Mms \
@@ -638,15 +642,9 @@ PRODUCT_PACKAGES := \
     CalendarProvider \
     SyncProvider \
     IM \
-    FM2 \
     QrtSetProp \
-    MyNotes \
 	ThemeManager \
-	Theme_golden_age \
-	Theme_colorful_space \
 	Theme_blue_classic \
-	Theme_color \
-    FMRecord \
     VideoEditor
 ifneq "$(PRODUCT_MANUFACTURER)" "Micronet"
 PRODUCT_PACKAGES += qrtdiag

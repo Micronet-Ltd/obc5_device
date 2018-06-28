@@ -12,11 +12,13 @@ app_domain(se_dom_ex)
 
 # make se_dom_ex_exec files a enrtypoint to se_dom_ex domain
 #allow se_dom_ex se_dom_ex_exec : file {read getattr entrypoint open execute} ;
-auditallow se_dom_ex se_dom_ex_exec : file *;
+
+
+dontaudit se_dom_ex se_dom_ex_exec : file *;
 
 
 
-auditallow se_dom_ex domain : process *;
+dontaudit se_dom_ex domain : process *;
 
 
 dontaudit se_dom_ex self:capability_class_set *;

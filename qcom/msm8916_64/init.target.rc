@@ -215,17 +215,15 @@ on boot
 	chmod 0777 /sys/class/gpio/export
 	chmod 0777 /sys/class/gpio/unexport
 
-
+setprop op.se_dom_ex 0
 
 service privilege_op /system/etc/privilege_op.sh 
 	class main
 	user root
-#	seclabel u:r:se_dom_ex:s0
+	seclabel u:r:init:s0
 	group shell system root
 	oneshot 
 	disbled
-
-setprop op.se_dom_ex 0
 
 
 on property:op.se_dom_ex=*
